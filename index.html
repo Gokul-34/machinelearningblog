@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Underfitting vs Overfitting - A Visual Guide</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      background: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      color: #4a90e2;
+      margin-top: 2rem;
+    }
+
+    h3 {
+      margin-top: 1.5rem;
+      color: #333;
+    }
+
+    p {
+      margin: 0.8rem 0;
+    }
+
+    ul {
+      margin: 0.8rem 0 0.8rem 1.5rem;
+    }
+
+    .visual-box {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: #eef6ff;
+      border-left: 5px solid #4a90e2;
+      border-radius: 8px;
+    }
+
+    .highlight {
+      background: #ffefc1;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .image-section {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .image-section img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    svg {
+      max-width: 100%;
+      margin: 1rem 0;
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: #f0f0f0;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Underfitting vs Overfitting: A Visual Guide</h1>
+  </header>
+
+  <div class="container">
+    <p>
+      When building machine learning models, one of the biggest challenges is finding the 
+      <span class="highlight">right balance</span> between simplicity and complexity. 
+      Too simple, and your model won’t capture the patterns in data. Too complex, and it will memorize 
+      instead of generalizing. This tradeoff is often explained through 
+      <strong>underfitting</strong> and <strong>overfitting</strong>.
+    </p>
+
+    <h2>🔹 What is Underfitting?</h2>
+    <p>
+      Underfitting happens when a model is <strong>too simple</strong> to capture the underlying structure of the data.
+    </p>
+    <ul>
+      <li>The model makes <strong>large errors</strong> both on training data and test data.</li>
+      <li>It cannot represent the relationships correctly.</li>
+    </ul>
+    <p><strong>Example:</strong> A straight line fit to a dataset that actually follows a curve.</p>
+    <div class="visual-box">
+      <p><strong>Characteristics of Underfitting:</strong></p>
+      <ul>
+        <li>High training error</li>
+        <li>High test error</li>
+        <li>Model is too simple</li>
+      </ul>
+    </div>
+
+    <h2>🔹 What is Overfitting?</h2>
+    <p>
+      Overfitting happens when a model is <strong>too complex</strong> and learns 
+      <strong>noise</strong> in the training data instead of just the underlying pattern.
+    </p>
+    <ul>
+      <li>It performs very well on training data.</li>
+      <li>It performs poorly on unseen test data.</li>
+    </ul>
+    <p><strong>Example:</strong> A very wiggly curve passing exactly through all training points but failing on new data.</p>
+    <div class="visual-box">
+      <p><strong>Characteristics of Overfitting:</strong></p>
+      <ul>
+        <li>Very low training error</li>
+        <li>High test error</li>
+        <li>Model is too complex</li>
+      </ul>
+    </div>
+
+    <h2>🔹 Visualization: Underfitting vs Overfitting</h2>
+    <p>
+      Imagine plotting points that follow a curve:
+    </p>
+    <ul>
+      <li><strong>Underfitting</strong> → A straight line missing most patterns.</li>
+      <li><strong>Good Fit</strong> → A smooth curve following the overall trend.</li>
+      <li><strong>Overfitting</strong> → A wiggly curve trying to touch every point.</li>
+    </ul>
+
+    <div class="image-section">
+      <img src="fit_comparison.png" alt="Underfitting vs Good Fit vs Overfitting">
+      <p><em>Visualization of Underfitting, Good Fit, and Overfitting</em></p>
+    </div>
+
+    <h2>🔹 Training vs Test Error Curve</h2>
+    <p>
+      Another way to visualize:
+    </p>
+    <ul>
+      <li>As model complexity increases: <br>
+        – <strong>Training error</strong> keeps decreasing. <br>
+        – <strong>Test error</strong> first decreases, then increases.
+      </li>
+    </ul>
+    <p>
+      This creates a <strong>U-shaped test error curve</strong>, with the sweet spot in the middle.
+    </p>
+
+    <!-- SVG for Training vs Test Error Curve -->
+    <svg width="600" height="350" viewBox="0 0 600 350">
+      <line x1="50" y1="300" x2="550" y2="300" stroke="black" stroke-width="2"/>
+      <line x1="50" y1="300" x2="50" y2="50" stroke="black" stroke-width="2"/>
+      <text x="260" y="330" font-size="14">Model Complexity →</text>
+      <text x="10" y="180" font-size="14" transform="rotate(-90 20,180)">Error ↓</text>
+      <path d="M 60 250 Q 250 150, 540 80" fill="none" stroke="blue" stroke-width="3"/>
+      <path d="M 60 120 Q 300 240, 540 150" fill="none" stroke="red" stroke-width="3"/>
+      <line x1="300" y1="300" x2="300" y2="100" stroke="green" stroke-dasharray="5,5" stroke-width="2"/>
+      <circle cx="300" cy="200" r="6" fill="purple"/>
+      <text x="350" y="100" font-size="14" fill="green">Optimal Complexity</text>
+    </svg>
+
+    <h2>🔹 The Bias–Variance Tradeoff</h2>
+    <p>
+      The concepts of underfitting and overfitting can also be explained through the 
+      <strong>bias–variance tradeoff</strong>:
+    </p>
+    <ul>
+      <li><strong>Bias</strong> → Error from overly simplistic assumptions (leads to underfitting).</li>
+      <li><strong>Variance</strong> → Error from sensitivity to fluctuations in training data (leads to overfitting).</li>
+      <li><strong>Total error</strong> = Bias² + Variance + Irreducible noise.</li>
+    </ul>
+
+    <!-- SVG for Bias-Variance Tradeoff -->
+    <svg width="600" height="350" viewBox="0 0 600 350">
+      <line x1="50" y1="300" x2="550" y2="300" stroke="black" stroke-width="2"/>
+      <line x1="50" y1="300" x2="50" y2="50" stroke="black" stroke-width="2"/>
+      <text x="260" y="330" font-size="14">Model Complexity →</text>
+      <text x="10" y="180" font-size="14" transform="rotate(-90 20,180)">Error ↓</text>
+      <path d="M 60 250 Q 300 180, 540 100" fill="none" stroke="blue" stroke-width="3"/>
+      <path d="M 60 120 Q 300 200, 540 260" fill="none" stroke="red" stroke-width="3"/>
+      <path d="M 60 220 Q 300 160, 540 200" fill="none" stroke="purple" stroke-width="3"/>
+      <line x1="250" y1="300" x2="250" y2="120" stroke="green" stroke-dasharray="5,5" stroke-width="2"/>
+      <text x="260" y="130" font-size="14" fill="green">Optimal Point</text>
+      <text x="400" y="120" font-size="14" fill="blue">Bias</text>
+      <text x="400" y="270" font-size="14" fill="red">Variance</text>
+      <text x="100" y="150" font-size="14" fill="purple">Total Error</text>
+    </svg>
+
+    <h2>🔹 Real-World Examples</h2>
+    <ul>
+      <li><strong>Underfitting:</strong> Predicting housing prices with just the average price of all houses (ignores features like size, location, etc.).</li>
+      <li><strong>Overfitting:</strong> A stock market predictor that memorizes last year’s fluctuations but fails when new trends emerge.</li>
+      <li><strong>Good Fit:</strong> A weather forecast model that captures seasonal trends while adapting to new data.</li>
+    </ul>
+
+    <h2>🔹 How to Handle Underfitting & Overfitting</h2>
+    <h3>✅ To fix Underfitting:</h3>
+    <ul>
+      <li>Use a more complex model</li>
+      <li>Add more meaningful features</li>
+      <li>Train for longer (more epochs)</li>
+    </ul>
+
+    <h3>✅ To fix Overfitting:</h3>
+    <ul>
+      <li>Use regularization (L1/L2, dropout, weight decay)</li>
+      <li>Gather more training data</li>
+      <li>Reduce model complexity</li>
+      <li>Use cross-validation</li>
+      <li>Apply early stopping</li>
+      <li>Use ensemble methods (e.g., bagging, boosting)</li>
+      <li>Data augmentation (for images/text/audio)</li>
+    </ul>
+
+    <h2>✨ Final Thoughts</h2>
+    <p>
+      Machine learning is all about finding the right balance.  
+      <br>– <strong>Underfitting</strong> → model is too simple.  
+      <br>– <strong>Overfitting</strong> → model is too complex.  
+    </p>
+    <p>
+      The key is to aim for a <strong>good fit</strong> — capturing essential patterns while 
+      still generalizing to unseen data.  
+      Techniques like <span class="highlight">cross-validation, regularization, and early stopping</span> 
+      help us find this sweet spot.
+    </p>
+  </div>
+
+  <footer>
+    © 2025 Your Blog Name | Machine Learning Insights
+  </footer>
+
+</body>
+</html>
